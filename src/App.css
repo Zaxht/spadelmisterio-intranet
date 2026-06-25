@@ -34,7 +34,9 @@
   margin-top: 2rem;
 }
 
-.login-form input {
+.login-form input,
+.data-form input,
+.search-box input {
   background: var(--surface-soft);
   border: 1px solid var(--line);
   border-radius: 0.9rem;
@@ -43,13 +45,19 @@
   padding: 0.9rem 1rem;
 }
 
-.login-form input:focus {
+.login-form input:focus,
+.data-form input:focus,
+.search-box input:focus {
   border-color: var(--brand-orange);
   outline: 3px solid rgba(255, 138, 0, 0.2);
 }
 
 .login-form button,
-.session-card button {
+.session-card button,
+.data-form button,
+.delete-confirmation button,
+.row-actions button,
+.row-actions a {
   background: var(--brand-orange);
   border: 0;
   border-radius: 999px;
@@ -255,6 +263,80 @@
   text-align: center;
 }
 
+.crud-layout {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(20rem, 1.2fr);
+}
+
+.data-form,
+.search-box {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.data-form label,
+.search-box {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.form-actions,
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.data-form .secondary-button,
+.delete-confirmation button:last-child,
+.row-actions button,
+.row-actions a {
+  background: var(--surface-soft);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.client-row-with-actions {
+  gap: 1rem;
+}
+
+.row-actions button,
+.row-actions a {
+  font-size: 0.9rem;
+  padding: 0.55rem 0.85rem;
+}
+
+.empty-list {
+  background: var(--surface-soft);
+  border-radius: 1rem;
+  color: var(--muted);
+  margin: 1rem 0 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.delete-confirmation {
+  align-items: center;
+  background: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.2rem;
+  bottom: 1.5rem;
+  box-shadow: var(--shadow-strong);
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  left: 50%;
+  padding: 1rem;
+  position: fixed;
+  transform: translateX(-50%);
+  width: min(92vw, 36rem);
+  z-index: 10;
+}
+
 code {
   background: #fff4df;
   border-radius: 0.4rem;
@@ -272,7 +354,8 @@ code {
   }
 
   .stats-grid,
-  .detail-card {
+  .detail-card,
+  .crud-layout {
     grid-template-columns: 1fr;
   }
 

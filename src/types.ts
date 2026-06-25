@@ -19,6 +19,8 @@ export interface Client {
   email: string
 }
 
+export type ClientFormData = Omit<Client, 'id'>
+
 export interface DashboardStat {
   label: string
   value: string

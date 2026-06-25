@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './components/AppLayout'
 import { ProtectedRoute } from './components/ProtectedRoute'
-import { DashboardPage } from './pages/DashboardPage'
 import { ClientDetailPage } from './pages/ClientDetailPage'
+import { ClientsPage } from './pages/ClientsPage'
+import { DashboardPage } from './pages/DashboardPage'
 import { LoginPage } from './pages/LoginPage'
 import './App.css'
 
@@ -19,6 +20,7 @@ export function App() {
         }
       >
         <Route index element={<DashboardPage />} />
+        <Route path="clientes" element={<ClientsPage />} />
         <Route path="clientes/:clientId" element={<ClientDetailPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

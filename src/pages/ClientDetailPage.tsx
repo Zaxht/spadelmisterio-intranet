@@ -1,9 +1,17 @@
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { SAMPLE_CLIENTS } from '../data/mockData'
+import type { Client } from '../types'
+import { getStoredClients } from '../utils/clientStorage'
 
 export function ClientDetailPage() {
   const { clientId } = useParams<{ clientId: string }>()
-  const client = SAMPLE_CLIENTS.find((currentClient) => currentClient.id === clientId)
+  const [clients, setClients] = useState<Client[]>(() => getStoredClients())
+
+  useEffect(() => {
+    setClients(getStoredClients())
+  }, [])
+
+  const client = clients.find((currentClient) => currentClient.id === clientId)
 
   if (!client) {
     return (
