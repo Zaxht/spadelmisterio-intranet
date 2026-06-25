@@ -6,14 +6,14 @@ import { getStoredClients } from '../utils/clientStorage'
 export function ClientDetailPage() {
   // useParams lee el id que viene en la URL: /clientes/:clientId.
   const { clientId } = useParams<{ clientId: string }>()
-  const [clients, setClients] = useState<Client[]>(() => getStoredClients())
+  const [client, setClient] = useState<Client | null>(null)
 
   useEffect(() => {
-    // Buscamos en localStorage para que tambien funcionen clientes creados por el usuario.
-    setClients(getStoredClients())
-  }, [])
-
-  const client = clients.find((currentClient) => currentClient.id === clientId)
+    // Cada vez que cambia el id de la URL, buscamos otra vez el cliente correcto.
+    const storedClients = getStoredClients()
+    const selectedClient = storedClients.find((currentClient) => currentClient.id === clientId)
+    setClient(selectedClient ?? null)
+  }, [clientId])
 
   if (!client) {
     return (
