@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { AuthContext } from './AuthContextCore'
 import type { AuthContextValue } from './AuthContextCore'
@@ -9,12 +9,10 @@ import { readStoredItem, removeStoredItem, saveStoredItem } from '../utils/stora
 const SESSION_KEY = 'session'
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [session, setSession] = useState<UserSession | null>(null)
-
-  useEffect(() => {
-    // Al recargar la pagina recuperamos la sesion guardada, si existe.
-    setSession(readStoredItem<UserSession>(SESSION_KEY))
-  }, [])
+  // Leemos la sesion inmediatamente para que una URL directa no rebote al login.
+  const [session, setSession] = useState<UserSession | null>(() => {
+    return readStoredItem<UserSession>(SESSION_KEY)
+  })
 
   // Login simulado: compara contra credenciales fijas y guarda la sesion.
   function login(credentials: LoginCredentials) {
