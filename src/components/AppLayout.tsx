@@ -24,6 +24,7 @@ export function AppLayout() {
           </NavLink>
           <NavLink to="/clientes">Clientes</NavLink>
           <NavLink to="/citas">Agenda</NavLink>
+          <NavLink to="/servicios">Servicios</NavLink>
         </nav>
 
         <div className="session-card">

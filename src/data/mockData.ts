@@ -3,6 +3,7 @@ import type {
   Client,
   DashboardStat,
   LoginCredentials,
+  Service,
   UserSession,
 } from '../types'
 
@@ -55,12 +56,47 @@ export const SAMPLE_CLIENTS: Client[] = [
   },
 ]
 
-export const SERVICE_OPTIONS = [
-  'Bano y limpieza',
-  'Peluqueria completa',
-  'Paseo de mascotas',
-  'Babysitting',
-  'Corte de unas',
+export const SAMPLE_SERVICES: Service[] = [
+  {
+    id: 'servicio-bano',
+    name: 'Bano y limpieza',
+    description: 'Limpieza completa a domicilio para mascotas pequenas y medianas.',
+    price: 18000,
+    durationMinutes: 60,
+    active: true,
+  },
+  {
+    id: 'servicio-peluqueria',
+    name: 'Peluqueria completa',
+    description: 'Corte, peinado y terminaciones segun tipo de pelaje.',
+    price: 28000,
+    durationMinutes: 90,
+    active: true,
+  },
+  {
+    id: 'servicio-paseo',
+    name: 'Paseo de mascotas',
+    description: 'Paseos seguros para liberar energia y mantener rutina.',
+    price: 12000,
+    durationMinutes: 45,
+    active: true,
+  },
+  {
+    id: 'servicio-babysitting',
+    name: 'Babysitting',
+    description: 'Acompanamiento temporal cuando la familia no esta en casa.',
+    price: 22000,
+    durationMinutes: 120,
+    active: true,
+  },
+  {
+    id: 'servicio-unas',
+    name: 'Corte de unas',
+    description: 'Cuidado rapido para evitar molestias al caminar.',
+    price: 9000,
+    durationMinutes: 25,
+    active: true,
+  },
 ]
 
 export const SAMPLE_APPOINTMENTS: Appointment[] = [

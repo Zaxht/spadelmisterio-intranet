@@ -228,6 +228,35 @@
   gap: 0.75rem;
 }
 
+.service-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.service-card {
+  background: var(--surface-soft);
+  border-radius: 1.1rem;
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.service-card h3 {
+  margin: 0 0 0.4rem;
+}
+
+.service-card p,
+.service-card small {
+  color: var(--muted);
+  margin: 0;
+}
+
+.service-card strong {
+  color: var(--ink);
+  font-size: 1.6rem;
+}
+
 .client-row {
   align-items: center;
   background: var(--surface-soft);

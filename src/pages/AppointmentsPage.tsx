@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { SERVICE_OPTIONS } from '../data/mockData'
-import type { Appointment, AppointmentFormData, Client } from '../types'
+import type { Appointment, AppointmentFormData, Client, Service } from '../types'
 import { getStoredAppointments, saveStoredAppointments } from '../utils/appointmentStorage'
 import { getStoredClients } from '../utils/clientStorage'
+import { getStoredServices } from '../utils/serviceStorage'
 
 const EMPTY_APPOINTMENT_FORM: AppointmentFormData = {
   clientId: '',
-  serviceName: SERVICE_OPTIONS[0],
+  serviceName: '',
   date: '',
   time: '',
   status: 'pendiente',
@@ -18,6 +18,7 @@ const EMPTY_APPOINTMENT_FORM: AppointmentFormData = {
 export function AppointmentsPage() {
   const [appointments, setAppointments] = useState<Appointment[]>(() => getStoredAppointments())
   const [clients, setClients] = useState<Client[]>(() => getStoredClients())
+  const [services, setServices] = useState<Service[]>(() => getStoredServices())
   const [formData, setFormData] = useState<AppointmentFormData>(EMPTY_APPOINTMENT_FORM)
   const [editingAppointmentId, setEditingAppointmentId] = useState<string | null>(null)
   const [appointmentIdToDelete, setAppointmentIdToDelete] = useState<string | null>(null)
@@ -27,7 +28,10 @@ export function AppointmentsPage() {
   useEffect(() => {
     setAppointments(getStoredAppointments())
     setClients(getStoredClients())
+    setServices(getStoredServices())
   }, [])
+
+  const activeServices = services.filter((service) => service.active)
 
   const filteredAppointments = appointments.filter((appointment) => {
     const client = findClientById(appointment.clientId)
@@ -156,9 +160,10 @@ export function AppointmentsPage() {
               value={formData.serviceName}
               onChange={(event) => updateFormField('serviceName', event.target.value)}
             >
-              {SERVICE_OPTIONS.map((serviceName) => (
-                <option key={serviceName} value={serviceName}>
-                  {serviceName}
+              <option value="">Selecciona un servicio</option>
+              {activeServices.map((service) => (
+                <option key={service.id} value={service.name}>
+                  {service.name}
                 </option>
               ))}
             </select>

@@ -33,6 +33,17 @@ export interface Appointment {
 
 export type AppointmentFormData = Omit<Appointment, 'id'>
 
+export interface Service {
+  id: string
+  name: string
+  description: string
+  price: number
+  durationMinutes: number
+  active: boolean
+}
+
+export type ServiceFormData = Omit<Service, 'id'>
+
 export interface DashboardStat {
   label: string
   value: string

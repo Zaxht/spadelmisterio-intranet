@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DASHBOARD_STATS } from '../data/mockData'
-import type { Appointment, Client } from '../types'
+import type { Appointment, Client, Service } from '../types'
 import { getStoredAppointments } from '../utils/appointmentStorage'
 import { getStoredClients } from '../utils/clientStorage'
+import { getStoredServices } from '../utils/serviceStorage'
 
 export function DashboardPage() {
   const [clients, setClients] = useState<Client[]>(() => getStoredClients())
   const [appointments, setAppointments] = useState<Appointment[]>(() => getStoredAppointments())
+  const [services, setServices] = useState<Service[]>(() => getStoredServices())
 
   useEffect(() => {
     setClients(getStoredClients())
     setAppointments(getStoredAppointments())
+    setServices(getStoredServices())
   }, [])
 
   const dynamicStats = DASHBOARD_STATS.map((stat) => {
@@ -27,6 +30,14 @@ export function DashboardPage() {
       return {
         ...stat,
         value: String(clients.length),
+      }
+    }
+
+    if (stat.label === 'Servicios agendados') {
+      return {
+        ...stat,
+        value: String(services.filter((service) => service.active).length),
+        detail: 'Servicios activos en catalogo',
       }
     }
 
