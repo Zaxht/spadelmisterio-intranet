@@ -34,9 +34,6 @@ export function ClientDetailPage() {
       <div className="page-heading">
         <p className="eyebrow">Ficha dinamica</p>
         <h2>{client.petName}</h2>
-        <p>
-          Esta pagina usa el parametro <code>{clientId}</code> desde la URL.
-        </p>
       </div>
 
       <article className="panel-card detail-card">

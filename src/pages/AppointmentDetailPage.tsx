@@ -43,9 +43,6 @@ export function AppointmentDetailPage() {
       <div className="page-heading">
         <p className="eyebrow">Detalle dinamico</p>
         <h2>{appointment.serviceName}</h2>
-        <p>
-          Esta pagina usa el parametro <code>{appointmentId}</code> desde la URL.
-        </p>
       </div>
 
       <article className="panel-card detail-card">
