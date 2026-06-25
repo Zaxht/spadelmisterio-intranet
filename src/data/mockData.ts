@@ -1,4 +1,10 @@
-import type { Client, DashboardStat, LoginCredentials, UserSession } from '../types'
+import type {
+  Appointment,
+  Client,
+  DashboardStat,
+  LoginCredentials,
+  UserSession,
+} from '../types'
 
 export const DEMO_CREDENTIALS: LoginCredentials = {
   email: 'admin@spadelmisterio.cl',
@@ -46,5 +52,34 @@ export const SAMPLE_CLIENTS: Client[] = [
     petType: 'Gatito',
     phone: '+56 9 9876 1234',
     email: 'diego@example.com',
+  },
+]
+
+export const SERVICE_OPTIONS = [
+  'Bano y limpieza',
+  'Peluqueria completa',
+  'Paseo de mascotas',
+  'Babysitting',
+  'Corte de unas',
+]
+
+export const SAMPLE_APPOINTMENTS: Appointment[] = [
+  {
+    id: 'cita-luna',
+    clientId: 'cliente-luna',
+    serviceName: 'Peluqueria completa',
+    date: '2026-06-28',
+    time: '10:30',
+    status: 'confirmada',
+    notes: 'Llevar shampoo hipoalergenico.',
+  },
+  {
+    id: 'cita-max',
+    clientId: 'cliente-max',
+    serviceName: 'Babysitting',
+    date: '2026-06-29',
+    time: '16:00',
+    status: 'pendiente',
+    notes: 'Max se asusta con ruidos fuertes.',
   },
 ]

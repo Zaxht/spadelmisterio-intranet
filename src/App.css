@@ -36,6 +36,8 @@
 
 .login-form input,
 .data-form input,
+.data-form select,
+.data-form textarea,
 .search-box input {
   background: var(--surface-soft);
   border: 1px solid var(--line);
@@ -47,6 +49,8 @@
 
 .login-form input:focus,
 .data-form input:focus,
+.data-form select:focus,
+.data-form textarea:focus,
 .search-box input:focus {
   border-color: var(--brand-orange);
   outline: 3px solid rgba(255, 138, 0, 0.2);
@@ -259,6 +263,10 @@
   padding: 1rem;
 }
 
+.detail-card-wide {
+  grid-column: 1 / -1;
+}
+
 .empty-state {
   text-align: center;
 }
@@ -306,6 +314,21 @@
 .row-actions a {
   font-size: 0.9rem;
   padding: 0.55rem 0.85rem;
+}
+
+.data-form textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.status-pill {
+  background: #f4ffd0;
+  border-radius: 999px;
+  color: #4d5d00;
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 0.55rem 0.85rem;
+  text-transform: capitalize;
 }
 
 .empty-list {

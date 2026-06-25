@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './components/AppLayout'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import { AppointmentDetailPage } from './pages/AppointmentDetailPage'
+import { AppointmentsPage } from './pages/AppointmentsPage'
 import { ClientDetailPage } from './pages/ClientDetailPage'
 import { ClientsPage } from './pages/ClientsPage'
 import { DashboardPage } from './pages/DashboardPage'
@@ -22,6 +24,8 @@ export function App() {
         <Route index element={<DashboardPage />} />
         <Route path="clientes" element={<ClientsPage />} />
         <Route path="clientes/:clientId" element={<ClientDetailPage />} />
+        <Route path="citas" element={<AppointmentsPage />} />
+        <Route path="citas/:appointmentId" element={<AppointmentDetailPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

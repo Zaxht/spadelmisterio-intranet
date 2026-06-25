@@ -23,6 +23,7 @@ export function AppLayout() {
             Dashboard
           </NavLink>
           <NavLink to="/clientes">Clientes</NavLink>
+          <NavLink to="/citas">Agenda</NavLink>
         </nav>
 
         <div className="session-card">

@@ -21,6 +21,18 @@ export interface Client {
 
 export type ClientFormData = Omit<Client, 'id'>
 
+export interface Appointment {
+  id: string
+  clientId: string
+  serviceName: string
+  date: string
+  time: string
+  status: 'pendiente' | 'confirmada' | 'realizada'
+  notes: string
+}
+
+export type AppointmentFormData = Omit<Appointment, 'id'>
+
 export interface DashboardStat {
   label: string
   value: string

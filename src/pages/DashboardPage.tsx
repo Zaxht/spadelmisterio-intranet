@@ -1,17 +1,28 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DASHBOARD_STATS } from '../data/mockData'
-import type { Client } from '../types'
+import type { Appointment, Client } from '../types'
+import { getStoredAppointments } from '../utils/appointmentStorage'
 import { getStoredClients } from '../utils/clientStorage'
 
 export function DashboardPage() {
   const [clients, setClients] = useState<Client[]>(() => getStoredClients())
+  const [appointments, setAppointments] = useState<Appointment[]>(() => getStoredAppointments())
 
   useEffect(() => {
     setClients(getStoredClients())
+    setAppointments(getStoredAppointments())
   }, [])
 
   const dynamicStats = DASHBOARD_STATS.map((stat) => {
+    if (stat.label === 'Citas de hoy') {
+      return {
+        ...stat,
+        value: String(appointments.length),
+        detail: 'Citas guardadas en agenda',
+      }
+    }
+
     if (stat.label === 'Clientes activos') {
       return {
         ...stat,
