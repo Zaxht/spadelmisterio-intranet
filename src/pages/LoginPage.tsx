@@ -15,6 +15,7 @@ export function LoginPage() {
     return <Navigate to="/" replace />
   }
 
+  // Evita recargar la pagina, valida credenciales y navega al dashboard.
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setError('')

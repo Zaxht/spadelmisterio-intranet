@@ -5,11 +5,13 @@ import { getStoredAppointments } from '../utils/appointmentStorage'
 import { getStoredClients } from '../utils/clientStorage'
 
 export function AppointmentDetailPage() {
+  // useParams obtiene el id de la ruta dinamica: /citas/:appointmentId.
   const { appointmentId } = useParams<{ appointmentId: string }>()
   const [appointments, setAppointments] = useState<Appointment[]>(() => getStoredAppointments())
   const [clients, setClients] = useState<Client[]>(() => getStoredClients())
 
   useEffect(() => {
+    // La cita y el cliente se leen desde localStorage para mantener persistencia.
     setAppointments(getStoredAppointments())
     setClients(getStoredClients())
   }, [])

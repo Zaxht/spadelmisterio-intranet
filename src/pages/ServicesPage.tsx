@@ -20,6 +20,7 @@ export function ServicesPage() {
   const [formError, setFormError] = useState('')
 
   useEffect(() => {
+    // Cargamos el catalogo guardado cada vez que se monta esta pagina.
     setServices(getStoredServices())
   }, [])
 
@@ -36,6 +37,7 @@ export function ServicesPage() {
     )
   })
 
+  // Sirve para campos de texto normales: nombre y descripcion.
   function updateTextField(fieldName: 'name' | 'description', value: string) {
     setFormData({
       ...formData,
@@ -43,6 +45,7 @@ export function ServicesPage() {
     })
   }
 
+  // Convertimos el valor del input a numero para precios y duracion.
   function updateNumberField(fieldName: 'price' | 'durationMinutes', value: string) {
     setFormData({
       ...formData,
@@ -50,6 +53,7 @@ export function ServicesPage() {
     })
   }
 
+  // Crea o edita un servicio y luego persiste el catalogo completo.
   function saveService(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setFormError('')
@@ -70,6 +74,7 @@ export function ServicesPage() {
     resetForm()
   }
 
+  // Carga un servicio en el formulario para editarlo.
   function startEditingService(service: Service) {
     setEditingServiceId(service.id)
     setFormData({
@@ -82,6 +87,7 @@ export function ServicesPage() {
     setFormError('')
   }
 
+  // Permite pausar un servicio sin eliminarlo del catalogo.
   function toggleServiceStatus(serviceId: string) {
     const nextServices = services.map((service) =>
       service.id === serviceId ? { ...service, active: !service.active } : service,
@@ -91,10 +97,12 @@ export function ServicesPage() {
     saveStoredServices(nextServices)
   }
 
+  // Abre la confirmacion visual antes de eliminar.
   function askToDeleteService(serviceId: string) {
     setServiceIdToDelete(serviceId)
   }
 
+  // Elimina el servicio confirmado y guarda el resultado.
   function confirmDeleteService() {
     if (!serviceIdToDelete) {
       return
@@ -106,6 +114,7 @@ export function ServicesPage() {
     setServiceIdToDelete(null)
   }
 
+  // Limpia el formulario para crear otro servicio desde cero.
   function resetForm() {
     setFormData(EMPTY_SERVICE_FORM)
     setEditingServiceId(null)

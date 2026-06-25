@@ -12,9 +12,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<UserSession | null>(null)
 
   useEffect(() => {
+    // Al recargar la pagina recuperamos la sesion guardada, si existe.
     setSession(readStoredItem<UserSession>(SESSION_KEY))
   }, [])
 
+  // Login simulado: compara contra credenciales fijas y guarda la sesion.
   function login(credentials: LoginCredentials) {
     const validEmail = credentials.email.trim().toLowerCase() === DEMO_CREDENTIALS.email
     const validPassword = credentials.password === DEMO_CREDENTIALS.password
@@ -28,6 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return true
   }
 
+  // Logout: limpia React y localStorage para cerrar la sesion completamente.
   function logout() {
     setSession(null)
     removeStoredItem(SESSION_KEY)

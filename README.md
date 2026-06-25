@@ -1,32 +1,61 @@
-# React + TypeScript + Vite
+# Intranet Spa del Misterio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sistema interno para administrar clientes, mascotas, citas y servicios del negocio Spa del Misterio.
 
-Currently, two official plugins are available:
+## Como ejecutar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Luego abrir la URL que muestra Vite, normalmente `http://localhost:5173/`.
+
+## Acceso demo
+
+- Correo: `admin@spadelmisterio.cl`
+- Contrasena: `spadelmisterio`
+
+La sesion se guarda en `localStorage`, por eso se mantiene aunque se recargue la pagina.
+
+## Modulos
+
+- `Login`: valida credenciales simuladas y crea una sesion local.
+- `Dashboard`: resume clientes, citas y servicios activos.
+- `Clientes`: CRUD completo con busqueda, edicion, eliminacion y detalle dinamico.
+- `Agenda`: CRUD completo de citas conectado a clientes y servicios.
+- `Servicios`: administra catalogo, precios, duracion y estado activo/pausado.
+
+## Estructura de archivos
+
+```text
+src/
+  App.tsx                  Rutas principales de la aplicacion.
+  main.tsx                 Punto de entrada de React.
+  types.ts                 Interfaces y tipos TypeScript.
+  components/              Componentes compartidos de layout y rutas protegidas.
+  context/                 Contexto global de autenticacion.
+  hooks/                   Hooks propios, como useAuth.
+  data/                    Datos demo iniciales.
+  pages/                   Pantallas principales de la intranet.
+  utils/                   Funciones reutilizables para localStorage.
+```
+
+## Requisitos cubiertos
+
+- React con TypeScript.
+- Rutas protegidas y rutas dinamicas con `useParams`.
+- Login simulado.
+- Sesion global con `useContext`.
+- Persistencia en `localStorage`.
+- Formularios controlados con `useState`.
+- Carga de datos con `useEffect`.
+- Dos CRUD principales: clientes y citas.
+- Busqueda/filtro, editar y eliminar con confirmacion visual.
+
+## Comandos utiles
+
+```bash
+npm run lint
+npm run build
+```

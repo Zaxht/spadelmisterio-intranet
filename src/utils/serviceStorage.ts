@@ -4,6 +4,7 @@ import { readStoredItem, saveStoredItem } from './storage'
 
 const SERVICES_KEY = 'services'
 
+// Carga el catalogo desde localStorage o lo inicializa con servicios de ejemplo.
 export function getStoredServices() {
   const services = readStoredItem<Service[]>(SERVICES_KEY)
 
@@ -15,6 +16,7 @@ export function getStoredServices() {
   return SAMPLE_SERVICES
 }
 
+// Guarda cambios del catalogo, incluyendo precios y estado activo/pausado.
 export function saveStoredServices(services: Service[]) {
   saveStoredItem(SERVICES_KEY, services)
 }

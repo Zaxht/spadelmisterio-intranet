@@ -12,11 +12,13 @@ export function DashboardPage() {
   const [services, setServices] = useState<Service[]>(() => getStoredServices())
 
   useEffect(() => {
+    // El dashboard resume datos reales guardados por los otros modulos.
     setClients(getStoredClients())
     setAppointments(getStoredAppointments())
     setServices(getStoredServices())
   }, [])
 
+  // Reemplaza los numeros demo por conteos actuales de localStorage.
   const dynamicStats = DASHBOARD_STATS.map((stat) => {
     if (stat.label === 'Citas de hoy') {
       return {

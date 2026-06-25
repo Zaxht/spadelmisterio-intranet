@@ -26,6 +26,7 @@ export function AppointmentsPage() {
   const [formError, setFormError] = useState('')
 
   useEffect(() => {
+    // Recargamos datos al entrar para tener clientes, servicios y citas actualizados.
     setAppointments(getStoredAppointments())
     setClients(getStoredClients())
     setServices(getStoredServices())
@@ -49,10 +50,12 @@ export function AppointmentsPage() {
     )
   })
 
+  // Busca el cliente relacionado con una cita para mostrar mascota y responsable.
   function findClientById(clientId: string) {
     return clients.find((client) => client.id === clientId)
   }
 
+  // Cambia un campo del formulario manteniendo intactos los demas.
   function updateFormField(fieldName: keyof AppointmentFormData, value: string) {
     setFormData({
       ...formData,
@@ -60,6 +63,7 @@ export function AppointmentsPage() {
     })
   }
 
+  // Guarda una cita nueva o reemplaza la cita que se esta editando.
   function saveAppointment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setFormError('')
@@ -82,6 +86,7 @@ export function AppointmentsPage() {
     resetForm()
   }
 
+  // Pasa una cita existente al formulario para poder modificarla.
   function startEditingAppointment(appointment: Appointment) {
     setEditingAppointmentId(appointment.id)
     setFormData({
@@ -95,10 +100,12 @@ export function AppointmentsPage() {
     setFormError('')
   }
 
+  // Activa el mensaje de confirmacion antes de borrar.
   function askToDeleteAppointment(appointmentId: string) {
     setAppointmentIdToDelete(appointmentId)
   }
 
+  // Borra la cita confirmada y guarda el nuevo arreglo en localStorage.
   function confirmDeleteAppointment() {
     if (!appointmentIdToDelete) {
       return
@@ -112,6 +119,7 @@ export function AppointmentsPage() {
     setAppointmentIdToDelete(null)
   }
 
+  // Vuelve el formulario a su estado inicial.
   function resetForm() {
     setFormData(EMPTY_APPOINTMENT_FORM)
     setEditingAppointmentId(null)

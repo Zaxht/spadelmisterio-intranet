@@ -5,6 +5,7 @@ export function AppLayout() {
   const { logout, session } = useAuth()
   const navigate = useNavigate()
 
+  // Cerramos sesion y enviamos al login para evitar volver atras a una ruta privada.
   function handleLogout() {
     logout()
     navigate('/login', { replace: true })

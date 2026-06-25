@@ -4,10 +4,12 @@ import type { Client } from '../types'
 import { getStoredClients } from '../utils/clientStorage'
 
 export function ClientDetailPage() {
+  // useParams lee el id que viene en la URL: /clientes/:clientId.
   const { clientId } = useParams<{ clientId: string }>()
   const [clients, setClients] = useState<Client[]>(() => getStoredClients())
 
   useEffect(() => {
+    // Buscamos en localStorage para que tambien funcionen clientes creados por el usuario.
     setClients(getStoredClients())
   }, [])
 

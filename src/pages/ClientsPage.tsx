@@ -13,7 +13,7 @@ const EMPTY_FORM: ClientFormData = {
 }
 
 export function ClientsPage() {
-  const [clients, setClients] = useState<Client[]>([])
+  const [clients, setClients] = useState<Client[]>(() => getStoredClients())
   const [formData, setFormData] = useState<ClientFormData>(EMPTY_FORM)
   const [editingClientId, setEditingClientId] = useState<string | null>(null)
   const [clientIdToDelete, setClientIdToDelete] = useState<string | null>(null)
@@ -21,6 +21,7 @@ export function ClientsPage() {
   const [formError, setFormError] = useState('')
 
   useEffect(() => {
+    // useEffect asegura que la lista se cargue desde localStorage al entrar al modulo.
     setClients(getStoredClients())
   }, [])
 
@@ -38,6 +39,7 @@ export function ClientsPage() {
     )
   })
 
+  // Actualiza un solo campo del formulario sin perder los otros valores.
   function updateFormField(fieldName: keyof ClientFormData, value: string) {
     setFormData({
       ...formData,
@@ -45,6 +47,7 @@ export function ClientsPage() {
     })
   }
 
+  // Crea un cliente nuevo o actualiza el que esta en modo edicion.
   function saveClient(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setFormError('')
@@ -65,6 +68,7 @@ export function ClientsPage() {
     resetForm()
   }
 
+  // Carga los datos del cliente seleccionado dentro del formulario.
   function startEditingClient(client: Client) {
     setEditingClientId(client.id)
     setFormData({
@@ -77,10 +81,12 @@ export function ClientsPage() {
     setFormError('')
   }
 
+  // Solo marca que cliente queremos borrar; la eliminacion real espera confirmacion.
   function askToDeleteClient(clientId: string) {
     setClientIdToDelete(clientId)
   }
 
+  // Elimina definitivamente el cliente confirmado y actualiza localStorage.
   function confirmDeleteClient() {
     if (!clientIdToDelete) {
       return
@@ -92,6 +98,7 @@ export function ClientsPage() {
     setClientIdToDelete(null)
   }
 
+  // Limpia el formulario y vuelve al modo "crear".
   function resetForm() {
     setFormData(EMPTY_FORM)
     setEditingClientId(null)

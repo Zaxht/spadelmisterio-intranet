@@ -14,6 +14,7 @@ export function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      {/* Todo lo que esta dentro de ProtectedRoute requiere sesion iniciada. */}
       <Route
         path="/"
         element={
